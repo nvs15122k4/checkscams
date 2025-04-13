@@ -105,7 +105,7 @@ DATABASES = {
         "ENGINE": "django.db.backends.mysql",
         "NAME": "checkscam",
         "USER": "root",
-        "PASSWORD": "Iwp190353",
+        "PASSWORD": "1234",
         "HOST": "localhost",
     }
 }

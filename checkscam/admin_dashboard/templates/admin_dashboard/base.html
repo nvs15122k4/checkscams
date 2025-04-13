@@ -59,16 +59,16 @@
             </a>
           </div>
         </div>
-        <div class="col-md-6 d-flex justify-content-center align-items-center">
+        <div class="col-md-6 d-flex justify-content-start align-items-center">
           <div class="d-flex gap-4">
-            <a href="{% url 'pending_posts' %}" class="text-white text-decoration-none fw-semibold">
+            <a href="{% url 'pending_posts' %}" class="fw-semibold text-decoration-none" style="color: white !important;">
               📋 Bài tố cáo chưa duyệt
             </a>
-            <a href="{% url 'home_admin' %}" class="text-white text-decoration-none fw-semibold">
+            <a href="{% url 'home_admin' %}" class="fw-semibold text-decoration-none" style="color: white !important;">
               🕖 Lịch sử các bài tố cáo
             </a>
           </div>
-        </div>
+        </div>        
         <div class="col-md-3 d-flex justify-content-end align-items-center">
           <div class="header-ctn">
             <div>
@@ -78,13 +78,9 @@
             </div>
           </div>
         </div>
-  
       </div>
     </div>
-  </header>
-  
-  
-  
+</header>
     <!-- MAIN DASHBOARD -->
     <main class="container my-4">
         {% block dashboard %}
