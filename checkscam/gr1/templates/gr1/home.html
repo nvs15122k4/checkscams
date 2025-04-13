@@ -1,49 +1,84 @@
 {% extends 'gr1/base.html' %}
 
 {% block main_content %}
-<div class="container text-center mt-4">
-    <div class="row mt-4">
-        {% for scam in scam_posts %}
-            <div class="col-md-6 mb-4">
-                <div class="card border-warning shadow-sm">
-                    <div class="card-body">
-                        <h5 class="card-title fw-bold text-danger">{{ scam.name_scam }}</h5>
-                        <p><strong>💳 Tài khoản ngân hàng:</strong> {{ scam.stk_scam|default:"Không có" }}</p>
-                        <p><strong>📞 Số điện thoại:</strong> {{ scam.sdt_scam|default:"Không có" }}</p>
-                        <p class="text-muted"><small>📅 Ngày đăng: {{ scam.created_at|date:"d/m/Y H:i" }}</small></p>
-                        <a href="{% url 'scam_detail' scam.id %}" class="btn btn-danger fw-bold">📖 Xem chi tiết</a>
-                    </div>
-                </div>
+<style>
+    .card:hover {
+      transform: scale(1.02);
+      transition: all 0.3s ease-in-out;
+      background-color: #fff8f8;
+      border-color: #dc3545 !important; /* Đậm màu đỏ khi hover */
+      box-shadow: 0 0.5rem 1rem rgba(220, 53, 69, 0.25);
+    }
+
+    .scam-card {
+      border: 2px solid #dc3545; /* Màu đỏ Bootstrap */
+      border-radius: 1rem;
+      transition: all 0.3s ease-in-out;
+      margin-bottom: 1.5rem;
+    }
+
+    .scam-card .card-body {
+      padding: 1.25rem;
+    }
+  </style>
+
+  <div class="container mt-4" style="margin: 16px 0;">
+    <div class="row">
+      {% for scam in scam_posts %}
+        <div class="col-md-6">
+          <div class="card scam-card shadow h-100">
+            <div class="card-body">
+              <h3 class="card-title fw-bold text-danger">{{ scam.name_scam }}</h3>
+              <h5><strong>💳 Tài khoản ngân hàng:</strong> {{ scam.stk_scam|default:'Không có' }}</h5>
+              <h5><strong>📞 Số điện thoại:</strong> {{ scam.sdt_scam|default:'Không có' }}</h5>
+              <h5 class="text-muted"><small>📅 Ngày đăng: {{ scam.created_at|date:'d/m/Y H:i' }}</small></h5>
+              <a href="{% url 'scam_detail' scam.id %}" class="btn btn-danger fw-bold mt-3">📖 Xem chi tiết</a>
             </div>
-        {% empty %}
-            <p class="text-muted mt-4">🚫 Không tìm thấy bài tố cáo nào.</p>
-        {% endfor %}
+          </div>
+        </div>
+      {% empty %}
+        <p class="text-muted mt-4">🚫 Không tìm thấy bài tố cáo nào.</p>
+      {% endfor %}
     </div>
 
-    <div class="mt-4">
-        <nav>
-            <ul class="pagination justify-content-center">
-                {% if scam_posts.has_previous %}
-                    <li class="page-item">
-                        <a class="page-link text-warning" href="?page=1{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">« Đầu</a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link text-warning" href="?page={{ scam_posts.previous_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">‹ Trước</a>
-                    </li>
-                {% endif %}
-                <li class="page-item disabled">
-                    <span class="page-link bg-warning text-dark">Trang {{ scam_posts.number }} / {{ scam_posts.paginator.num_pages }}</span>
+    <div class="container text-center mt-5">
+        <div class="d-flex justify-content-center">
+          <nav>
+            <ul class="pagination justify-content-center d-inline-flex">
+              {% if scam_posts.has_previous %}
+                <li class="page-item">
+                  <a class="page-link text-warning" href="?page=1{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">
+                    « Đầu
+                  </a>
                 </li>
-                {% if scam_posts.has_next %}
-                    <li class="page-item">
-                        <a class="page-link text-warning" href="?page={{ scam_posts.next_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">Tiếp ›</a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link text-warning" href="?page={{ scam_posts.paginator.num_pages }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">Cuối »</a>
-                    </li>
-                {% endif %}
+                <li class="page-item">
+                  <a class="page-link text-warning" href="?page={{ scam_posts.previous_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">
+                    ‹ Trước
+                  </a>
+                </li>
+              {% endif %}
+      
+              <li class="page-item disabled">
+                <span class="page-link bg-warning text-dark fw-bold">
+                  Trang {{ scam_posts.number }} / {{ scam_posts.paginator.num_pages }}
+                </span>
+              </li>
+      
+              {% if scam_posts.has_next %}
+                <li class="page-item">
+                  <a class="page-link text-warning" href="?page={{ scam_posts.next_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">
+                    Tiếp ›
+                  </a>
+                </li>
+                <li class="page-item">
+                  <a class="page-link text-warning" href="?page={{ scam_posts.paginator.num_pages }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">
+                    Cuối »
+                  </a>
+                </li>
+              {% endif %}
             </ul>
-        </nav>
-    </div>
-</div>
-{% endblock main_content %}
+          </nav>
+        </div>
+      </div>      
+  </div>
+{% endblock %}
