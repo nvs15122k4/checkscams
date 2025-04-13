@@ -1,0 +1,35 @@
+{% extends 'gr1/base.html' %}
+
+{% block main_content %}
+<div class="container mt-4">
+  <h2 class="mb-4 text-center text-primary">📘 Hướng dẫn sử dụng CheckScam</h2>
+
+  <div class="mb-4">
+    <h4>🔍 1. Tra cứu số tài khoản hoặc số điện thoại</h4>
+    <p>Người dùng có thể nhập <strong>số tài khoản ngân hàng</strong> hoặc <strong>số điện thoại</strong> vào thanh tìm kiếm ở đầu trang. Hệ thống sẽ trả về danh sách các bài tố cáo có liên quan nếu có.</p>
+  </div>
+
+  <div class="mb-4">
+    <h4>📢 2. Gửi bài tố cáo</h4>
+    <p>Để tố cáo một đối tượng lừa đảo, bạn cần đăng nhập. Sau đó, vào mục <strong>Tố cáo</strong> và điền đầy đủ thông tin như tên đối tượng, số tài khoản/số điện thoại, nội dung tố cáo và hình ảnh liên quan (nếu có).</p>
+  </div>
+
+  <div class="mb-4">
+    <h4>🕵️‍♂️ 3. Quản trị viên (Admin)</h4>
+    <p>Các bài viết mới sẽ được chuyển đến khu vực kiểm duyệt của quản trị viên. Chỉ những bài được duyệt mới hiển thị công khai. Quản trị viên có thể xem <strong>Lịch sử bài tố cáo chưa duyệt</strong> và <strong>Danh sách các bài tố cáo</strong> thông qua menu điều hướng (chỉ hiển thị nếu bạn là admin).</p>
+  </div>
+
+  <div class="mb-4">
+    <h4>📂 4. Lưu ý</h4>
+    <ul>
+      <li>Không đăng bài tố cáo sai sự thật, vu khống.</li>
+      <li>Bài viết có nội dung vi phạm sẽ bị gỡ bỏ ngay lập tức.</li>
+      <li>Thông tin người dùng được bảo mật theo <a href="#">Chính sách bảo mật</a>.</li>
+    </ul>
+  </div>
+
+  <div class="text-center">
+    <a href="{% url 'home' %}" class="btn btn-warning fw-bold">⬅️ Quay về trang chủ</a>
+  </div>
+</div>
+{% endblock main_content %}

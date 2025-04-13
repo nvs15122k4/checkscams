@@ -1,0 +1,33 @@
+{% extends 'admin_dashboard/base.html' %}
+
+{% block dashboard %}
+<div class="card shadow rounded p-4">
+    <h3 class="mb-4">📌 Chi tiết bài tố cáo</h3>
+
+    <p><strong>👤 Tên:</strong> {{ scam.name_scam }}</p>
+    <p><strong>🏦 Tài khoản ngân hàng:</strong> {{ scam.stk_scam|default:"Không có" }}</p>
+    <p><strong>📞 Số điện thoại:</strong> {{ scam.sdt_scam|default:"Không có" }}</p>
+    <p><strong>📝 Nội dung:</strong> {{ scam.noi_dung }}</p>
+
+    <p><strong>📷 Bằng chứng:</strong></p>
+    <div class="row mb-3">
+        {% for image in scam.images.all %}
+            <div class="col-md-4 mb-3">
+                <img src="{{ image.image.url }}" class="img-fluid rounded shadow" alt="Bằng chứng">
+            </div>
+        {% empty %}
+            <p>Không có ảnh</p>
+        {% endfor %}
+    </div>
+
+    <p><strong>📅 Ngày đăng:</strong> {{ scam.created_at|date:"d/m/Y H:i" }}</p>
+
+    <form method="POST" action="{% url 'approve_or_reject' scam.id %}" class="mb-3">
+        {% csrf_token %}
+        <button type="submit" name="action" value="approve" class="btn btn-success me-2">✔ Duyệt bài</button>
+        <button type="submit" name="action" value="reject" class="btn btn-danger">✖ Từ chối</button>
+    </form>
+
+    <a href="{% url 'pending_posts' %}" class="btn btn-secondary">⬅ Quay lại danh sách</a>
+</div>
+{% endblock dashboard %}

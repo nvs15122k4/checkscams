@@ -1,0 +1,28 @@
+{% extends 'admin_dashboard/base.html' %}
+
+{% block dashboard %}
+<style>
+    .homepage-btn {
+        padding: 16px 0px 0px 0px;
+    }
+    .homepage-btn a{
+        font-size: 20px;
+        color: black;
+    }
+    .homepage-btn a:hover{
+        color: red;
+    }
+</style>
+<h3>📋 Danh sách bài tố cáo</h3>
+<ul>
+    {% for scam in scam_posts %}
+        <li style="padding: 10px 0px 0px 0px;">
+            <strong>{{ scam.name_scam }}</strong> - Trạng thái: {{ scam.status }}
+            <a href="{% url 'scam_result' scam.id %}" class="btn btn-info">🔍 Xem chi tiết</a>
+        </li>
+    {% endfor %}
+</ul>
+<div class="homepage-btn">
+    <a href="{% url 'home' %}"><strong>Trở về trang chủ</strong></a>
+</div>
+{% endblock dashboard %}

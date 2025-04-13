@@ -1,0 +1,87 @@
+{% extends 'gr1/base.html' %}
+
+{% block main_content %}
+<style>
+  .register-wrapper {
+    min-height: 80vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .register-box {
+    width: 100%;
+    max-width: 420px;
+    background-color: #f8f9fa;
+    padding: 30px;
+    border: 2px solid #198754;
+    border-radius: 16px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  }
+
+  .register-box h3 {
+    text-align: center;
+    color: #198754;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+
+  .register-box label {
+    font-weight: 600;
+  }
+
+  .register-box .form-control {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  }
+
+  .register-box button {
+    font-weight: bold;
+    width: 100%;
+  }
+
+  .register-box p {
+    text-align: center;
+    margin-top: 15px;
+  }
+
+  .register-box a {
+    color: #198754;
+    font-weight: bold;
+    text-decoration: none;
+  }
+
+  .register-box a:hover {
+    text-decoration: underline;
+  }
+</style>
+
+<div class="register-wrapper">
+  <div class="register-box">
+    <h3>📝 Đăng ký tài khoản</h3>
+    <hr>
+    <form method="POST" novalidate>
+      {% csrf_token %}
+      <div class="mb-3">
+        <label for="username">👤 Tên tài khoản</label>
+        <input type="text" name="username" id="username" class="form-control" placeholder="Nhập tên tài khoản" required>
+      </div>
+      <div class="mb-3">
+        <label for="email">📧 Email</label>
+        <input type="email" name="email" id="email" class="form-control" placeholder="Nhập email" required>
+      </div>
+      <div class="mb-3">
+        <label for="password1">🔒 Mật khẩu</label>
+        <input type="password" name="password1" id="password1" class="form-control" placeholder="Nhập mật khẩu" required>
+      </div>
+      <div class="mb-3">
+        <label for="password2">🔒 Xác nhận mật khẩu</label>
+        <input type="password" name="password2" id="password2" class="form-control" placeholder="Nhập lại mật khẩu" required>
+      </div>
+      <button type="submit" class="btn btn-success" style="margin: 16px 0 0 0;">✅ Đăng ký ngay</button>
+    </form>
+    <p>
+      🔄 Đã có tài khoản? <a href="{% url 'login' %}">Đăng nhập ngay!</a>
+    </p>
+  </div>
+</div>
+{% endblock main_content %}

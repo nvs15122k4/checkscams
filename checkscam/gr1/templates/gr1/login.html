@@ -1,0 +1,78 @@
+{% extends 'gr1/base.html' %}
+
+{% block main_content %}
+<style>
+  .login-container {
+    min-height: 80vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .login-box {
+    background: #ffffff;
+    border: 2px solid #0d6efd;
+    border-radius: 12px;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    padding: 30px;
+    transition: 0.3s ease;
+  }
+
+  .login-box h3 {
+    color: #0d6efd;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 25px;
+  }
+
+  .form-label {
+    font-weight: 600;
+  }
+
+  .login-box button {
+    font-weight: bold;
+    display: block;
+    margin: 15px auto 0 auto;
+    width: fit-content;
+    padding: 8px 24px;
+  }
+  
+  .login-box p {
+    font-size: 14px;
+    text-align: center;
+    margin-top: 20px;
+  }
+
+  .login-box a {
+    color: #0d6efd;
+    font-weight: 600;
+  }
+
+  .login-box a:hover {
+    text-decoration: underline;
+  }
+</style>
+
+<div class="container login-container">
+  <div class="login-box">
+    <h3>🔑 Đăng nhập</h3>
+    <form method="POST">
+      {% csrf_token %}
+      <div class="mb-3">
+        <label class="form-label">📧 Tài khoản</label>
+        <input type="text" name="username" class="form-control shadow-sm" required>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">🔒 Mật khẩu</label>
+        <input type="password" name="password" class="form-control shadow-sm" required>
+      </div>
+      <button type="submit" class="btn btn-primary">🚀 Vào!!</button>
+    </form>
+    <p>
+      Chưa tạo tài khoản hả ní? 🐧<br><a href="{% url 'register' %}">Đăng ký ngay ⁉️</a>
+    </p>
+  </div>
+</div>
+{% endblock %}

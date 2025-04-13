@@ -1,0 +1,68 @@
+{% extends 'gr1/base.html' %}
+
+{% block main_content %}
+<style>
+  .report-container {
+    min-height: 80vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .report-box {
+    background: #ffffff;
+    border: 2px solid #ffc107;
+    border-radius: 12px;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 550px;
+    padding: 30px;
+    transition: 0.3s ease;
+  }
+
+  .report-box h4 {
+    color: #ffc107;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 25px;
+  }
+
+  .form-label {
+    font-weight: 600;
+  }
+
+  .report-box button {
+    font-weight: bold;
+  }
+</style>
+
+<div class="container report-container">
+  <div class="report-box">
+    <h4>📢 Tố cáo lừa đảo</h4>
+    <form method="POST" enctype="multipart/form-data">
+      {% csrf_token %}
+      <div class="mb-3">
+        <label class="form-label">👤 Tên kẻ lừa đảo</label>
+        <input type="text" name="name_scam" class="form-control shadow-sm" placeholder="Nhập tên kẻ lừa đảo" required>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">💳 Số tài khoản ngân hàng</label>
+        <input type="text" name="stk_scam" class="form-control shadow-sm" placeholder="Nhập số tài khoản (nếu có)">
+      </div>
+      <div class="mb-3">
+        <label class="form-label">📞 Số điện thoại</label>
+        <input type="text" name="sdt_scam" class="form-control shadow-sm" placeholder="Nhập số điện thoại (nếu có)">
+      </div>
+      <div class="mb-3">
+        <label class="form-label">📝 Nội dung tố cáo</label>
+        <textarea name="noi_dung" class="form-control shadow-sm" rows="4" placeholder="Mô tả chi tiết vụ lừa đảo" required></textarea>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">📷 Bằng chứng hình ảnh</label>
+        <input type="file" name="images" class="form-control shadow-sm" multiple>
+      </div>
+      <button type="submit" class="btn btn-warning w-100" style="margin: 16px 0px 0px 0px ">🚀 Gửi tố cáo ngay</button>
+    </form>
+  </div>
+</div>
+{% endblock %}
