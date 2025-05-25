@@ -35,7 +35,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 MEDIA_URL = "/media/"
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
-GEMINI_API_KEY ="AIzaSyDLODk5Rv8zJM8ZDZb1EHAHlTyEQk_OEfs"
+GEMINI_API_KEY ="AIzaSyAcmv6H7Yy7Fi98hJEQ0Y7IhY9upny6VA8"
 
 # Quick-start development settings - unsuitable for production
 
